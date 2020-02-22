@@ -1,0 +1,162 @@
+lab book-2.1
+
+1)
+
+
+SQL> select staff_name, lpad(staff_sal,15,'$')staff_sal from staff_master;
+
+STAFF_NAME
+--------------------------------------------------
+STAFF_SAL
+------------------------------------------------------------
+shivani
+$$$$$$$$$$50000
+
+sindhu
+$$$$$$$$$$60000
+
+vinni
+$$$$$$$$$$20000
+
+
+SQL> update student_master
+  2  set student_dob='12-dec-04'
+  3  where student_code='2';
+
+1 row updated.
+
+SQL> select * from student_master;
+
+STUDENT_CODE STUDENT_NAME                                        DEPT_CODE
+------------ -------------------------------------------------- ----------
+STUDENT_D
+---------
+STUDENT_ADDRESS
+--------------------------------------------------------------------------------
+           1 lucky                                                      10
+10-MAY-05
+hyd
+
+           2 nandu                                                      20
+12-DEC-04
+vkb
+
+STUDENT_CODE STUDENT_NAME                                        DEPT_CODE
+------------ -------------------------------------------------- ----------
+STUDENT_D
+---------
+STUDENT_ADDRESS
+--------------------------------------------------------------------------------
+
+=================================================================================================================================================================
+
+2)
+
+SQL> select student_name, TO_CHAR(student_dob,'month, dd yyyy')as "dob" from student_master where TO_CHAR(student_dob,'day') like '%sat%' or TO_CHAR(student_dob,'day') like '%sunday%';
+
+STUDENT_NAME
+--------------------------------------------------
+dob
+---------------------------------------------
+nandu
+december , 12 2004
+
+==============================================================================================================================
+
+3)
+
+SQL> select staff_name, round(months_between(sysdate,Hiredate)) as "months_worked" from staff_master order by "months_worked";
+
+STAFF_NAME                                         months_worked
+-------------------------------------------------- -------------
+sindhu                                                       181
+vinni                                                        229
+shivani                                                      241
+
+================================================================================================================================
+
+4)
+
+
+SQL> select * from staff_master where to_char(Hiredate,'dd') between 1 and 15 and to_char(Hiredate,'month') like '%dec%';
+
+no rows selected
+
+=================================================================================================================================
+
+5)
+
+
+SQL> select staff_name,staff_sal, case
+  2  when staff_sal>=50000 then'A'
+  3  when staff_sal<50000 and staff_sal>=25000 then 'B'
+  4  when staff_sal<25000 and staff_sal>=10000 then 'C'
+  5  else 'D'
+  6  end case
+  7  from staff_master;
+
+STAFF_NAME                                          STAFF_SAL C
+-------------------------------------------------- ---------- -
+shivani                                                 50000 A
+sindhu                                                  60000 A
+vinni                                                   20000 C
+
+==================================================================================================================================
+
+6)
+
+
+SQL> select staff_name, hiredate,to_char(hiredate,'dy') as "DAY" from staff_master order by to_char(hiredate,'d');
+
+STAFF_NAME                                         HIREDATE  DAY
+-------------------------------------------------- --------- ------------
+vinni                                              01-JAN-01 mon
+shivani                                            01-JAN-00 sat
+sindhu                                             01-JAN-05 sat
+
+==================================================================================================================================
+
+7)
+
+
+SQL> select instr('mississippi','i',2,3) from dual;
+
+INSTR('MISSISSIPPI','I',2,3)
+----------------------------
+                           8
+
+==================================================================================================================================
+
+8)
+
+
+
+=================================================================================================================================
+
+ 2.2 GROUP FUNCTIONS
+
+1) select dept_code, max(staff_sal) as "Maximum", min(Staff_sal) as "Minimum", sum(staff_sal)as"Total", round(avg(staff_sal)) as"Average" from staff_master group by dept_code order by dept_code;
+
+ DEPT_CODE    Maximum    Minimum      Total    Average
+---------- ---------- ---------- ---------- ----------
+        10      50000      50000      50000      50000
+        20      60000      60000      60000      60000
+        30      20000      20000      20000      20000
+
+=====================================================================================
+
+2)
+
+select dept_code,count(mgr_code) as "Total number of managers" from staff_master group by dept_code order by dept_code;
+
+ DEPT_CODE Total number of managers
+---------- ------------------------
+        10                        1
+        20                        0
+        30                        1
+
+=============================================================================================
+
+
+
+

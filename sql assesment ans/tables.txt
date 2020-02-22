@@ -1,0 +1,322 @@
+SQL> CREATE TABLE Emp(Empno Number(4) not null,Ename Varchar2(10),job Varchar2(9),mgr Number(4),Hiredate Date,Sal Number(7,2),Comm Number(7,2),Deptno Number(2));
+
+Table created.
+
+SQL> DESC EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> create table Designation_Master(Design_code Number(3) Not Null,Design_name Varchar2(50));
+
+Table created.
+
+SQL> desc Designation_Master
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DESIGN_CODE                               NOT NULL NUMBER(3)
+ DESIGN_NAME                                        VARCHAR2(50)
+
+SQL> create table Department_master(dept_code number(2) not null,dept_name varchar2(50));
+
+Table created.
+
+SQL> desc department_master
+ Name                                      Null?    Type
+ ----------------------------------------- -------- --------------------------------
+ DEPT_CODE                                 NOT NULL NUMBER(2)
+ DEPT_NAME                                          VARCHAR2(50)
+
+SQL> create table student_master(student_code number(6) not null,student_name varchar2(50) not null,dept_code number(2),student_dob date);
+
+Table created.
+
+SQL> desc student_master
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_CODE                              NOT NULL NUMBER(6)
+ STUDENT_NAME                              NOT NULL VARCHAR2(50)
+ DEPT_CODE                                          NUMBER(2)
+ STUDENT_DOB                                        DATE
+
+SQL>
+     create table student_master(student_code number(6) not null,student_name varchar2(50) not null,dept_code number(2),student_dob date,student_address varchar2(240));
+create table student_master(student_code number(6) not null,student_name varchar2(50) not null,dept_code number(2),student_dob date,student_address varchar2(240))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> alter table student_master(student_address varchar2(240));
+alter table student_master(student_address varchar2(240))
+                          *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table student_master add(student_address varchar2(240));
+
+Table altered.
+
+SQL> desc student_master
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_CODE                              NOT NULL NUMBER(6)
+ STUDENT_NAME                              NOT NULL VARCHAR2(50)
+ DEPT_CODE                                          NUMBER(2)
+ STUDENT_DOB                                        DATE
+ STUDENT_ADDRESS                                    VARCHAR2(240)
+
+SQL> create table student_marks(student_code number(6),student_year number not null,subject1 number(3),subject2 number(3),subject3 number(3));
+
+Table created.
+
+SQL> desc student_marks
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_CODE                                       NUMBER(6)
+ STUDENT_YEAR                              NOT NULL NUMBER
+ SUBJECT1                                           NUMBER(3)
+ SUBJECT2                                           NUMBER(3)
+ SUBJECT3                                           NUMBER(3)
+
+SQL> desc staff_master
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STAFF_CODE                                NOT NULL NUMBER(8)
+ STAFF_NAME                                NOT NULL VARCHAR2(50)
+ DESIGN_CODE                                        NUMBER
+ DEPT_CODE                                          NUMBER
+ HIREDATE                                           DATE
+ STAFF_DOB                                          DATE
+ STAFF_ADDRESS                                      VARCHAR2(240)
+ MGR_CODE                                           NUMBER(8)
+ STAFF_SAL                                          NUMBER(10,2)
+
+SQL> desc book_master
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BOOK_CODE                                 NOT NULL NUMBER(10)
+ BOOK_NAME                                 NOT NULL VARCHAR2(50)
+ BOOK_PUB_YEAR                                      NUMBER
+ BOOK_PUB_AUTHOR                           NOT NULL VARCHAR2(50)
+
+SQL> desc book_transactions
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BOOK_CODE                                          NUMBER
+ STUDENT_CODE                                       NUMBER
+ STAFF_CODE                                         NUMBER
+ BOOK_ISSUE_DATE                           NOT NULL DATE
+ BOOK_EXPECTED_RETURN_DATE                 NOT NULL DATE
+ BOOK_ACTUAL_RETURN_DATE                            DATE
+
+SQL> INSERT INTO designation_master values(1,'sindhu');
+
+1 row created.
+
+SQL> INSERT INTO designation_master values(2,'vinni');
+
+1 row created.
+
+SQL> SELECT * from designation_master;
+
+DESIGN_CODE DESIGN_NAME
+----------- --------------------------------------------------
+          1 sindhu
+          2 vinni
+
+SQL> INSERT INTO department_master values(1,'puppy');
+
+1 row created.
+
+SQL> INSERT INTO department_master values(2,'bunny');
+
+1 row created.
+
+SQL> SELECT *from department_master;
+
+ DEPT_CODE DEPT_NAME
+---------- --------------------------------------------------
+         1 puppy
+         2 bunny
+
+
+SQL> INSERT INTO student_master values(1,'lucky',10,'10-may-05','hyd');
+
+1 row created.
+
+SQL> INSERT INTO student_master values(2,'nandu',20,'13-dec-04','vkb');
+
+1 row created.
+
+SQL> SELECT * from student_master;
+
+STUDENT_CODE STUDENT_NAME                                        DEPT_CODE
+------------ -------------------------------------------------- ----------
+STUDENT_D
+---------
+STUDENT_ADDRESS
+--------------------------------------------------------------------------------
+           1 lucky                                                      10
+10-MAY-05
+hyd
+
+           2 nandu                                                      20
+13-DEC-04
+vkb
+
+
+
+SQL> INSERT INTO staff_master(staff_code,staff_name,design_code,dept_coed,hiredate,staff_dob,staff-address,staff_sal) values(2,'sindhu',15,20,'01-jan-05','08-nov-98','hyd',60000);
+INSERT INTO staff_master(staff_code,staff_name,design_code,dept_coed,hiredate,staff_dob,staff-address,staff_sal) values(2,'sindhu',15,20,'01-jan-05','08-nov-98','hyd',60000)
+                                                                                             *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> INSERT INTO staff_master(staff_code,staff_name,design_code,dept_code,hiredate,staff_dob,staff-address,staff_sal) values(2,'sindhu',15,20,'01-jan-05','08-nov-98','hyd',60000);
+INSERT INTO staff_master(staff_code,staff_name,design_code,dept_code,hiredate,staff_dob,staff-address,staff_sal) values(2,'sindhu',15,20,'01-jan-05','08-nov-98','hyd',60000)
+                                                                                             *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> INSERT INTO staff_master(staff_code,staff_name,design_code,dept_code,hiredate,staff_dob,staff_address,staff_sal) values(2,'sindhu',15,20,'01-jan-05','08-nov-98','hyd',60000);
+
+1 row created.
+
+SQL> INSERT INTO staff_master values(3,'vinni',25,30,'01-jan-01','08-jul-99','hyd',10,50000);
+
+1 row created.
+
+SQL> SELECT * from staff_master;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE
+---------- -------------------------------------------------- -----------
+ DEPT_CODE HIREDATE  STAFF_DOB
+---------- --------- ---------
+STAFF_ADDRESS
+--------------------------------------------------------------------------------
+  MGR_CODE  STAFF_SAL
+---------- ----------
+         1 shivani                                                      5
+        10 01-JAN-00 12-FEB-98
+hyd
+        10      50000
+
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE
+---------- -------------------------------------------------- -----------
+ DEPT_CODE HIREDATE  STAFF_DOB
+---------- --------- ---------
+STAFF_ADDRESS
+--------------------------------------------------------------------------------
+  MGR_CODE  STAFF_SAL
+---------- ----------
+         2 sindhu                                                      15
+        20 01-JAN-05 08-NOV-98
+hyd
+                60000
+
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE
+---------- -------------------------------------------------- -----------
+ DEPT_CODE HIREDATE  STAFF_DOB
+---------- --------- ---------
+STAFF_ADDRESS
+--------------------------------------------------------------------------------
+  MGR_CODE  STAFF_SAL
+---------- ----------
+         3 vinni                                                       25
+        30 01-JAN-01 08-JUL-99
+hyd
+        10      50000
+
+
+
+
+SQL> UPDATE staff_master
+  2  set staff_sal='20000'
+  3  WHERE staff_code='3';
+
+1 row updated.
+
+SQL> SELECT * from staff_master;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE
+---------- -------------------------------------------------- -----------
+ DEPT_CODE HIREDATE  STAFF_DOB
+---------- --------- ---------
+STAFF_ADDRESS
+--------------------------------------------------------------------------------
+  MGR_CODE  STAFF_SAL
+---------- ----------
+         1 shivani                                                      5
+        10 01-JAN-00 12-FEB-98
+hyd
+        10      50000
+
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE
+---------- -------------------------------------------------- -----------
+ DEPT_CODE HIREDATE  STAFF_DOB
+---------- --------- ---------
+STAFF_ADDRESS
+--------------------------------------------------------------------------------
+  MGR_CODE  STAFF_SAL
+---------- ----------
+         2 sindhu                                                      15
+        20 01-JAN-05 08-NOV-98
+hyd
+                60000
+
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE
+---------- -------------------------------------------------- -----------
+ DEPT_CODE HIREDATE  STAFF_DOB
+---------- --------- ---------
+STAFF_ADDRESS
+--------------------------------------------------------------------------------
+  MGR_CODE  STAFF_SAL
+---------- ----------
+         3 vinni                                                       25
+        30 01-JAN-01 08-JUL-99
+hyd
+        10      20000
+
+
+
+SQL> INSERT INTO book_master values(1,'a&b',2002,'balaguruwsamy');
+Enter value for b: fg
+old   1: INSERT INTO book_master values(1,'a&b',2002,'balaguruwsamy')
+new   1: INSERT INTO book_master values(1,'afg',2002,'balaguruwsamy')
+
+1 row created.
+
+SQL> INSERT INTO book_master values(1,'a&',2002,'balaguruwsamy');
+
+1 row created.
+
+SQL> INSERT INTO book_master values(2,'b&',2004,'sudha murthy');
+
+1 row created.
+
+SQL> SELECT * from book_master;
+
+ BOOK_CODE BOOK_NAME                                          BOOK_PUB_YEAR
+---------- -------------------------------------------------- -------------
+BOOK_PUB_AUTHOR
+--------------------------------------------------
+         1 abc                                                         2002
+balaguruwsamy
+
+         2 b&                                                          2004
+sudha murthy

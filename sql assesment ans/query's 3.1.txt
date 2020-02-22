@@ -1,0 +1,106 @@
+
+LAB BOOK 3.1
+
+
+SQL> select * from department_master;
+
+ DEPT_CODE DEPT_NAME
+---------- --------------------------------------------------
+        10 ECE
+        20 EEE
+
+
+1)
+
+SQL>  select s.Staff_name,d.dept_code,d.dept_name,s.staff_sal from staff_master s , department_master d where s.dept_code=d.dept_code and s.staff_sal>20000;
+
+STAFF_NAME                                          DEPT_CODE
+-------------------------------------------------- ----------
+DEPT_NAME                                           STAFF_SAL
+-------------------------------------------------- ----------
+shivani                                                    10
+ECE                                                     50000
+
+sindhu                                                     20
+EEE                                                     60000
+
+=====================================================================================
+
+2)
+
+SQL> select s.staff_code as" Staff#", s.staff_name as " Staff", d.dept_name,s.mgr_code as" Mgr#" ,m. mgr_name as "manager" from staff_master s, department_master d,mngr m where s.dept_code=d.dept_code and s.mgr_code=m.mgr_code;
+
+    Staff#  Staff
+---------- --------------------------------------------------
+DEPT_NAME                                                Mgr#
+-------------------------------------------------- ----------
+manager
+--------------------
+         1 shivani
+ECE                                                        10
+kiran
+
+=====================================================================================
+
+3)
+
+SQL> select * from book_transactions;
+
+ BOOK_CODE STUDENT_CODE STAFF_CODE BOOK_ISSU BOOK_EXPE BOOK_ACTU
+---------- ------------ ---------- --------- --------- ---------
+         1           10          5 11-JAN-20 07-FEB-20 12-FEB-20
+         2           20         15 01-JAN-20 08-FEB-20 12-FEB-20
+         3           30         25 01-DEC-19 07-FEB-20 12-FEB-20
+
+SQL> select s.student_code, s.student_name,b.book_code,b.book_name from student_master s, book_master b, book_transactions t where s.student_code=t.student_code and b.book_code=t.book_code and t.book_expected_return_date=to_char(sysdate,'dd-mon-yy');
+
+STUDENT_CODE STUDENT_NAME                                        BOOK_CODE
+------------ -------------------------------------------------- ----------
+BOOK_NAME
+--------------------------------------------------
+          10 lucky                                                       1
+a&
+
+=======================================================================================
+
+4)
+
+
+
+=========================================================================================
+
+6)
+
+SQL> select staff_code, staff_name,staff_sal from staff_master where staff_sal< (select avg(staff_sal) from staff_master);
+
+STAFF_CODE STAFF_NAME                                          STAFF_SAL
+---------- -------------------------------------------------- ----------
+         3 vinni                                                   20000
+
+==============================================================================================
+
+7)
+
+SQL> select * from  book_master;
+
+ BOOK_CODE BOOK_NAME                                          BOOK_PUB_YEAR
+---------- -------------------------------------------------- -------------
+BOOK_PUB_AUTHOR
+--------------------------------------------------
+         1 a&                                                          2002
+balaguruwsamy
+
+         2 b&                                                          2004
+sudha murthy
+
+         3 abc                                                         2006
+balaguruswamy
+
+
+SQL> select book_pub_author,book_name from book_master where book_pub_author=(select book_pub_author from book_master group by book_pub_author having count(book_code)>1);
+
+no rows selected
+
+============================================================================================
+
+8)
