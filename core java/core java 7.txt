@@ -1,0 +1,412 @@
+
+LAB 7: Arrays and Collections
+
+7.1)
+package vjit;
+import java.util.Arrays;
+import java.util.Collections;
+
+public class Array {
+
+	public static void main(String[] args) {
+		String arr[]= {"Television","Refridgerator","Fan","Tube lights","Washing machine"};
+		Arrays.sort(arr);
+		System.out.printf("Sorted array :\n"+Arrays.toString(arr));
+
+	}
+
+}
+out Put:-Sorted array :
+[Fan, Refridgerator, Television, Tube lights, Washing machine]
+-------------------------------------------------------------------------------------------------------
+7.2)package vjit;
+import java.util.*;
+public class ArraySort{
+	public static void main(String args[])
+	{
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("Television");
+		al.add("Refridgerator");
+		al.add("Fan");
+		al.add("Tube Lights");
+		al.add("Washing Machine");
+		System.out.println("Before sorting");
+		for(String counter:al)
+		{
+			System.out.println(counter);
+		}
+		Collections.sort(al);
+		System.out.println("After sorting");
+		for(String counter:al)
+		{
+			System.out.println(counter);
+		}
+	}
+}
+OUTPUT:-Before sorting
+Television
+Refridgerator
+Fan
+Tube Lights
+Washing Machine
+After sorting
+Fan
+Refridgerator
+Television
+Tube Lights
+Washing Machine
+----------------------------------------------------------------------------------------------------------
+7.3)
+package vjit;
+import java.util.HashMap;
+import java.util.Map;
+public class employee {
+
+	public static void main(String[] args) {
+	
+       HashMap<Integer, String>map=new HashMap<>();
+       map.put(10,"nandini");
+       map.put(11,"vaishu");
+       map.put(12,"kirthi");
+       map.put(13,"manasa");
+       System.out.println("Size of map is: "+map.size());
+       for(Map.Entry m:map.entrySet())
+       {
+    	   System.out.println(m.getValue());
+       }
+       String s=(String)map.remove(11);
+       System.out.println("remove:"+s);
+	}
+
+}
+
+OUTPUT:-
+Size of map is: 4
+nandini
+vaishu
+kirthi
+manasa
+remove:vaishu
+------------------------------------------------------------------------------------------------------------------------
+Lab 8: Files IO
+
+8.1)
+package vjit;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+public class ReadFile {
+
+	public static void main(String[] args) {
+
+		try {
+		File rf=new File("C:\\Users\\k nandini\\Desktop\\Module1\\nandini.txt");
+		
+		Scanner myReader=new Scanner(rf);
+		while(myReader.hasNextLine()) {
+		String data=myReader.nextLine();
+		System.out.println(data);
+
+			StringBuffer buffer=new StringBuffer(data);
+			buffer=buffer.reverse();
+			String k=buffer.toString();
+			System.out.println(k);
+			
+		}
+		myReader.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println("File not found");
+		}
+
+}
+}
+
+OUTPUT:-
+Capgemini
+inimegpaC
+--------------------------------------------------------------------------------------------------------------------------
+8.2)
+package vjit;
+import java.io.*;
+import java.util.*;    
+public class Even {
+
+	public static void main(String[] args) throws IOException  {
+		// TODO Auto-generated method stub
+		FileReader fr=new FileReader("C:\\Users\\k nandini\\Desktop\\Module1\\nandini1.txt");
+		BufferedReader br=new BufferedReader(fr);
+		String data=null;
+		int a=0;
+		while((data=br.readLine())!=null)
+		{
+			Scanner sc=new Scanner(data);
+			sc.useDelimiter(",");
+			while(sc.hasNext())
+			{
+				a=Integer.parseInt(sc.next());
+				if(a%2==0)
+					System.out.println(a);
+			}
+			
+		}
+		fr.close();
+		br.close();
+	}
+}
+OUTPUT:-
+0
+2
+4
+6
+8
+10
+--------------------------------------------------------------------------------------------------------------------------------------------
+8.3)
+
+package com.cg.eis.pl;
+
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
+import java.util.Scanner;
+
+import com.cg.eis.bean.Employee;
+
+public class EmpUser {
+	
+	
+
+	static void checkSal(double sal) 
+	{ 
+		if (sal <= 3000) 
+		{ 
+			try
+			{
+				throw new EmployeeException();
+			}
+			catch(EmployeeException ee)
+			{
+				System.out.println(ee.getMessage());
+			}
+		}
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		Scanner obj = new Scanner(System.in);
+		
+	
+		EmpUser e=new EmpUser();
+		
+		System.out.println("Enter the details");
+		System.out.println("Enter the  name");
+		String name = obj.next();
+		System.out.println("Enter salary");
+		double sal = obj.nextDouble();
+		System.out.println("Enter designation");
+		String designation = obj.next();
+	
+		
+		Employee me = new Employee(name,sal,designation);
+		checkSal(sal);
+		me.calculate();
+		System.out.println("Insurance Scheme to "+me.getName()+"is:"+me.getInscheme());
+		System.out.println(me.toString());
+
+		FileOutputStream fos = new FileOutputStream(new File("C:\\Users\\k nandini\\Desktop\\Module1\\nandini.txt"));
+	
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(me);
+		
+		obj.close();
+	}
+}
+
+------------------------------------------------------------------------------------------------------------------------
+
+Lab 9: Introduction to Junit
+
+1).package jdbcPack;
+
+public class Person {
+	private String firstName;
+	private String lastName;
+	
+	public Person(String fname, String lname)
+	{
+		if(fname==null&&lname==null)
+		{
+			throw new IllegalArgumentException("Both Names Cannot be NULL");
+		}
+		this.firstName=fname;
+		this.lastName=lname;
+	}
+	public String getFullname()
+	{
+		String first=(this.firstName!=null)?this.firstName:"?";
+		String last=(this.lastName!=null)?this.lastName:"?";
+		return first+" "+last;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+}
+
+
+package jdbcPack;
+import org.junit.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class TestPerson2 {
+
+	@Test
+	public void testGetFullName()
+	{
+		System.out.println("From TestPerson2");
+		Person per=new Person("Robert","King");
+		assertEquals("Robert King",per.getFullname());
+	}
+	@Test(expected= IllegalArgumentException.class)
+	public void testNullslnName()
+	{
+		System.out.println("from TestPerson2 testing exceptions");
+		Person per1=new Person(null,null);
+	}
+	
+
+}
+OUTPUT: -
+From TestPerson2
+from TestPerson2 testing exceptions
+-----------------------------------------------------------------------------------------------------------------
+9.2)
+package jdbcPack;
+
+public class Date 
+	{
+	int intDay;
+	int intMonth;
+	int intYear;
+
+	Date(int intDay, int intMonth, int intYear)  	{
+		this.intDay = intDay;
+	this.intMonth = intMonth;
+	this.intYear = intYear;
+	}
+	// setter and getter methods
+	 void setDay(int intDay)	
+	{
+		this.intDay = intDay;
+	}
+		int getDay( )		
+	{
+		return  this.intDay;
+	}
+
+	void setMonth(int intMonth)
+	{
+		this.intMonth = intMonth;
+	}
+
+	int getMonth( )
+	{
+		return  this.intMonth;
+	}
+
+	void setYear(int intYear)
+	{
+		this.intYear=intYear;
+	}
+
+
+
+	int getYear( )
+	{
+		return  this.intYear;
+	}
+	public String toString()    
+	{
+		return	"Date is :"+intDay+"/"+intMonth+"/"+intYear;
+	}
+
+
+	} // Date class
+
+
+package jdbcPack;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+public class TestPerson
+{
+@Test
+public void SetDay()
+{
+	System.out.println("from TestPerson");
+	Date dt=new Date(1,12,1999);
+	assertEquals(1,dt.getDay());	
+}
+@Test
+public void SetMonth()
+{
+	System.out.println("from TestPerson");
+	Date dt=new Date(1,12,1999);
+	assertEquals(12,dt.getMonth());	
+}
+@Test
+public void SetYear()
+{
+	System.out.println("from TestPerson");
+	Date dt=new Date(1,12,1999);
+	assertEquals(1999,dt.getYear());	
+}
+}
+
+OUTPUT: -
+from TestPerson
+from TestPerson
+from TestPerson
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Lab 10: Property Files and JDBC 4.0
+
+10.1
+package vjit;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+public class PersonProp {
+public static void main(String[] args) throws IOException
+{
+	Properties pp=new Properties();
+	FileReader fr=new FileReader("C:\\Users\\k nandini\\eclipse-workspace\\Nandini\\src\\vjit\\PersonProps.properties");
+System.out.println("After Loading");
+pp.load(fr);
+System.out.println(pp);
+System.out.println("using getProperty() method");
+System.out.println(pp.getProperty("name"));
+System.out.println(pp.getProperty("rollno"));
+fr.close();
+
+
+
+
+}
+}
+OUTPUT:-
+After Loading
+{name=nandini, rollno=16911A0436}
+using getProperty() method
+nandini
+16911A0436

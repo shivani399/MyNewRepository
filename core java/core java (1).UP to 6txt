@@ -1,0 +1,740 @@
+
+Lab 2: Language Fundamentals, Classes and Objects 
+
+1).package vjit;
+
+public class PersonExample {
+
+	public static void main(String[] args) {
+		System.out.println("First Name: Divya\nLast Name: Bharathi"
+				+"\nGender: F\nAge: 20\nWeight: 85.55");
+
+	}
+
+}
+...
+First Name: Divya
+Last Name: Bharathi
+Gender: F
+Age: 20
+Weight: 85.55
+--------------------------------------------------------------------------------------------------------------------------
+2).
+package vjit;
+
+import java.util.Scanner;
+
+public class PersonExample {
+
+	public static void main(String[] args) {
+		/*System.out.println("First Name: Divya\nLast Name: Bharathi"
+				+"\nGender: F\nAge: 20\nWeight: 85.55");
+		*/
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		if(num<0)
+			System.out.println("Negative");
+		else
+			System.out.println("Positive");
+	}
+
+}
+...
+1
+Positive
+----------------------------------------------------------------------------------------------------------------------------
+3).
+package vjit;
+
+public class PersonMain {
+
+	public static void main(String[] args) {
+		
+		PersonDetails p=new PersonDetails("nandini","kurva",'f');
+		System.out.println("PersonDetails Details");
+		System.out.println("_______________");
+		System.out.println("Firstname :"+p.getFirstName());
+		System.out.println("lastname :"+p.getLastName());
+		System.out.println("gender :"+p.getGender());
+		
+		PersonDetails p1=new PersonDetails("bharath","malayala",'m');
+		System.out.println("PersonDetails Details");
+		System.out.println("_______________");
+		System.out.println("Firstname :"+p1.getFirstName());
+		System.out.println("lastname :"+p1.getLastName());
+		System.out.println("gender :"+p1.getGender());
+		PersonDetails p2=new PersonDetails("kishore","kumariii",'M');
+		System.out.println("PersonDetails Details");
+		System.out.println("_______________");
+		System.out.println("Firstname :"+p2.getFirstName());
+		System.out.println("lastname :"+p2.getLastName());
+		System.out.println("gender :"+p2.getGender());
+	
+	}
+}
+...
+PersonDetails Details
+------------------------
+Firstname :nandini
+lastname :kurva
+gender :f
+PersonDetails Details
+_______________
+Firstname :bharath
+lastname :malayala
+gender :m
+PersonDetails Details
+_______________
+Firstname :kishore
+lastname :kumariiii
+gender :M
+
+-----------------------------------------------------------------------------------------------------------------
+4).package vjit;
+public class PersonMain {
+
+	public static void main(String[] args) {
+		
+		PersonDetails p=new PersonDetails("nandini","kurva",'f');
+		System.out.println("PersonDetails Details");
+		System.out.println("------------------------");
+		System.out.println("Firstname :"+p.getFirstName());
+		System.out.println("lastname :"+p.getLastName());
+		System.out.println("gender :"+p.getGender());
+		System.out.println("Number :"+p.getNumber());
+		
+		PersonDetails p1=new PersonDetails("bharath","malayala",'m');
+		System.out.println("PersonDetails Details");
+		System.out.println("_______________");
+		System.out.println("Firstname :"+p1.getFirstName());
+		System.out.println("lastname :"+p1.getLastName());
+		System.out.println("gender :"+p1.getGender());
+		System.out.println("Number :"+p.getNumber());
+		PersonDetails p2=new PersonDetails("kishore","kumariiii",'M');
+		System.out.println("PersonDetails Details");
+		System.out.println("_______________");
+		System.out.println("Firstname :"+p2.getFirstName());
+		System.out.println("lastname :"+p2.getLastName());
+		System.out.println("gender :"+p2.getGender());
+		System.out.println("Number :"+p.getNumber());
+	
+	}
+}
+---------------------------------------------------------------------------------------------------------------------------
+5).package vjit;
+
+public class PersonMain {
+
+	enum genderSelection{
+		MALE,
+		FEMALE
+	}
+	public static void main(String[] args) {
+		
+		PersonDetails p=new PersonDetails("nandini","kurva","FEMALE");
+		System.out.println("PersonDetails Details");
+		System.out.println("_______________");
+		System.out.println("Firstname :"+p.getFirstName());
+		System.out.println("lastname :"+p.getLastName());
+		System.out.println("gender :"+p.getGender());
+		System.out.println("Number :"+p.getNumber());
+		
+		PersonDetails p1=new PersonDetails("bharath","malayala","MALE");
+	
+		System.out.println("PersonDetails Details");
+		System.out.println("_______________");
+		System.out.println("Firstname :"+p1.getFirstName());
+		System.out.println("lastname :"+p1.getLastName());
+		System.out.println("gender :"+p1.getGender());
+		System.out.println("Number :"+p1.getNumber());
+		
+		PersonDetails p2=new PersonDetails("kishore","kumariiii","MALE");
+		
+		System.out.println("PersonDetails Details");
+		System.out.println("_______________");
+		System.out.println("Firstname :"+p2.getFirstName());
+		System.out.println("lastname :"+p2.getLastName());
+		System.out.println("gender :"+p2.getGender());
+		System.out.println("Number :"+p1.getNumber());
+	
+	}
+}
+PersonDetails Details
+------------------------
+Firstname :nandini
+lastname :kurva
+gender :FEMALE
+Number :912345678
+PersonDetails Details
+_______________
+Firstname :bharath
+lastname :malayala
+gender :MALE
+Number :912345678
+PersonDetails Details
+_______________
+Firstname :kishore
+lastname :kumariiii
+gender :MALE
+Number :912345678
+
+---------------------------------------------------------------------------------------------------------------
+Lab 3: Exploring Basic Java Class Libraries
+
+1).package vjit;
+import java.util.*;
+
+public class String_Op {
+	public void Operation(String s1)
+	{
+		s1=s1+s1;
+		System.out.println("Added String is:"+s1);
+	}
+	public String OddReplace(String s1) {
+		String s2="";
+		for(int i=0;i<s1.length();i++)
+		{
+			if((i+1)%2!=0)
+				s2=s2+'#';
+			else
+				s2=s2+s1.charAt(i);
+		}
+		return s2;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		String s=sc.nextLine();
+		String_Op o=new String_Op();
+		o.Operation(s);
+		String var1=o.OddReplace(s);
+		System.out.println(var1);
+		
+		
+	}
+
+}
+nandini
+Added String is:nandininandini
+#a#d#n#
+
+--------------------------------------------------------------------------------------------------------
+2)
+
+package vjit;
+import java.util.*;
+import java.util.Scanner;
+
+public class SortingString { 
+	static boolean Sorted(String s) 
+	{ 
+		int n = s.length(); 
+		char c[] = new char [n];
+		for (int i = 0; i < n; i++) { 
+			c[i] = s.charAt(i); 
+		}
+	
+		for (int i = 0; i < n; i++) 
+			if (c[i] != s.charAt(i)) 
+				return false; 
+				
+		return true;	 
+		} 
+
+	
+	public static void main(String args[]) 
+	{ 
+		
+		Scanner sc=new Scanner(System.in);
+		String s=sc.nextLine();
+		if (Sorted(s)) 
+		System.out.println("Yes"); 
+		else
+			System.out.println("No");
+	}
+}
+Output: -
+ant
+Yes
+
+---------------------------------------------------------------------------------------------------------------
+
+3).package vjit;
+import java.time.*;
+public class DateDuration {
+	
+         public void duration()
+         {
+        	
+        	 Scanner sc=new Scanner(System.in);
+      	   String dob=sc.next();
+        	 LocalDate pdate = LocalDate.of(dob);
+ 	        LocalDate now = LocalDate.now();
+ 	 
+ 	        Period dur = Period.between(pdate, now);
+ 	       System.out.printf("\nDuration is %d years, %d months and %d days old\n\n",dur.getYears(), dur.getMonths(), dur.getDays());
+ }
+           public static void main(String[] args)
+	    {
+	        DateDuration d = new DateDuration();
+	        d.duration();
+	     
+	     
+	    }
+}
+outPut:-
+
+1999-05-02
+
+Duration is 20 years, 9 months and 5 days old
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+4).package vjit;
+
+import java.time.*;
+import java.time.temporal.*;
+
+public class DurationLocal {
+	 public void localdur()
+     {
+    	 LocalDate pdate = LocalDate.of(2014,12,11);
+	        LocalDate after= LocalDate.of(2016, 03, 18);
+	        /*return ChronoUnit.DAYS.between(pdate, after);*/
+	        Period dur = Period.between(pdate, after);
+	       System.out.printf("\nDuration is %d years, %d months and %d days old\n\n",dur.getYears(), dur.getMonths(), dur.getDays());
+}
+       public static void main(String[] args)
+    {
+        DurationLocal d = new DurationLocal();
+        d.localdur();
+     
+     
+    }
+}
+outPut:-
+1999-06-03
+2020-02-07
+
+Duration is 20 years, 8 months and 4 days old
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+7).package vjit;
+import java.util.Scanner;
+public  class Person {
+public String getFullName(String firstName,String lastname){
+		String fullname=firstName+lastname;
+		return fullname;
+		
+	}
+	
+
+	public static void main(String[] args) {
+		//Person p=new Person("Bhavana","Reddy",'F');
+
+		Scanner sc=new Scanner(System.in);
+		Person P=new Person();
+		String firstName=sc.nextLine();
+		String lastName=sc.nextLine();
+	   String result=P.getFullName(firstName,lastName);
+	   System.out.println(result);
+        sc.close();
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+Lab 4: Inheritance and Polymorphism
+----------------------------------------
+
+1).package vjit;
+
+public class Account {
+static long count;
+private long accNum;
+protected double balance;
+private String name;
+private float age;
+Person accHolder;
+Account(long accNum,double balance,Person P)
+{
+	this.accNum=accNum;
+	this.balance=balance;
+	this.accHolder=P;
+}
+Account(long accNum,double balance,String name,float age)
+{
+	this.accNum=accNum;
+	this.balance=balance;
+this.name=name;
+this.age=age;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public float getAge() {
+	return age;
+}
+public void setAge(float age) {
+	this.age = age;
+}
+
+public long getAccNum() {
+	return accNum;
+}
+public void setAccNum(long accNum) {
+	this.accNum = accNum;
+}
+public double getBalance() {
+	return balance;
+}
+public void setBalance(double balance) {
+	this.balance = balance;
+}
+void deposit(double d)
+{
+this.balance=balance+d;
+}
+void withdraw(double d)
+{
+	this.balance=balance-d;
+}
+
+public static void main(String[] args)
+{
+Account s=new Account(count++,2000.0,"smith",22.0f);
+Account k=new Account(count++,3000.0,"kathy",22.0f);
+s.deposit(2000);
+k.withdraw(2000);
+System.out.println("smith:"+s.getBalance());
+System.out.println("kathy:"+k.getBalance());
+}	
+}
+----------------------
+OUT PUT: -
+smith:4000.0
+kathy:1000.0
+---------------------------------------------------------------------------------------------------------------
+2)package vjit;
+
+ class SavingsAccount extends Account
+{
+	final double minimumBalance=1000;
+	SavingsAccount(long accnum, double balance, Person p) {
+		super(accnum, balance, p);
+	}
+	void withdraw(double d)
+	{
+		if(this.balance>=minimumBalance)
+			this.balance=this.balance-d;
+			else	
+			System.out.println("you didnt with draw money");
+		
+	}
+	
+
+class CurrentAccount extends Account{
+	final double overdraftLimit=1000;
+	CurrentAccount(long accnum, double balance, Person p) {
+		super(accnum, balance, p);
+}
+	
+	 void withdraw(double d)
+	 {
+		 if(this.balance<this.overdraftLimit)
+				System.out.println("Can't complete this transaction");
+				else
+					this.balance = this.balance-d;
+			} 
+	 
+	 }
+ }
+public class Maintenance {
+public static void main(String[] args)
+{
+	CurrentAccount ca=new CurrentAccount();
+                SavingsAccount sa=new SavingsAccount();
+ca.withdraw();
+sa.withdraw();
+}
+}
+-------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------
+Lab 5: Abstract classes and Interfaces
+
+i).package com.cg.eis.bean;
+
+public class Employee {
+private int id;
+private String name;
+private double sal;
+private String designation;
+private String inscheme;
+/*public Employee(int id, String name, double sal, String designation, String inscheme) {
+	super();
+	this.id = id;
+	this.name = name;
+	this.sal = sal;
+	this.designation = designation;
+	this.inscheme = inscheme;
+}*/
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public double getSal() {
+	return sal;
+}
+public void setSal(double sal) {
+	this.sal = sal;
+}
+public String getDesignation() {
+	return designation;
+}
+public void setDesignation(String designation) {
+	this.designation = designation;
+}
+public String getInscheme() {
+	return inscheme;
+}
+public void setInscheme(String inscheme) {
+	this.inscheme = inscheme;
+}
+}
+-----------------------------------------------------------------------------------------------------------------------------
+ii).package com.cg.eis.service;
+
+import com.cg.eis.bean.Employee;
+
+public class Service implements EmployeeService{
+	Employee e=new Employee();
+	
+	@Override
+	
+   public  void calculate(double sal )
+	{
+		if(sal<20000 && sal>5000)
+		{
+		e.setDesignation("System Associate ");
+		e.setInscheme("scheme c");
+		System.out.println("desig="+e.getDesignation());
+		System.out.println("scheme="+e.getInscheme());
+		}
+		else if(sal<40000 && sal>=20000)
+		{
+			e.setDesignation("Programmer");
+			e.setInscheme("scheme B");
+			System.out.println("desig= "+e.getDesignation());
+			System.out.println("scheme= "+e.getInscheme());
+		}
+		else if(sal>=4000)
+		{
+			e.setDesignation(" manager");
+			e.setInscheme(" scheme A");
+			System.out.println("desig="+e.getDesignation());
+			System.out.println("scheme="+e.getInscheme());
+		}
+		else
+		{
+			e.setDesignation(" clerk");
+			e.setInscheme("no scheme");
+			System.out.println("desig="+e.getDesignation());
+			System.out.println("scheme="+e.getInscheme());	
+		}
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+iii).package com.cg.eis.pl;
+import java.util.*;
+import com.cg.eis.bean.Employee;
+import com.cg.eis.service.Service;
+
+public class Details {
+
+	public static void main(String[] args) {
+Scanner sc=new Scanner(System.in);
+System.out.println("enter id , name, sal of first employee");
+
+int id1=sc.nextInt();
+String name1=sc.next();
+double sal1=sc.nextDouble();
+
+Employee e1=new Employee();
+
+e1.setId(id1);
+e1.setName(name1);
+e1.setSal(sal1);
+
+System.out.println("enter id , name, sal of first employee");
+int id2=sc.nextInt();
+String name2=sc.next();
+double sal2=sc.nextDouble();
+
+Employee e2=new Employee ();
+
+e2.setId(id2);
+e2.setName(name2);
+e2.setSal(sal2);
+
+Service s=new Service();
+
+
+//s.calculate(sal2);
+
+System.out.println("employee 1: ID="+e1.getId()+" \nNAME"+e1.getName()+"\n SAL"+e1.getSal());
+s.calculate(sal1);
+System.out.println("employee 2:ID"+e2.getId()+" \nNAME"+e2.getName()+"\n SAL"+e2.getSal());
+s.calculate(sal2);
+
+}
+
+}
+OUTPUT:-
+enter id , name, sal of first employee
+436
+nandini
+5000
+enter id , name, sal of first employee
+437
+nandhu
+6000
+employee 1: ID=436 
+NAMEnandini
+ SAL5000.0
+desig= manager
+scheme= scheme A
+employee 2:ID437 
+NAMEnandhu
+ SAL6000.0
+desig=System Associate 
+scheme=scheme c
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Lab 6: Exception Handling
+
+1).package vjit;
+
+class BlankException extends Exception{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String str;
+	BlankException(String str){
+		this.str=str;
+	}
+	public String toString() {
+		return "Exception Occured : "+this.str;
+	}
+	
+}
+public class HandleEception {
+
+	public static void main(String[] args) {
+		PersonDetails person1 = new PersonDetails();
+		person1.setFirstName("");
+		person1.setLastName("");
+		if(person1.getFirstName().equals("") || person1.getLastName().equals("")) {
+			try {
+				throw new BlankException("Blank");
+			} catch (BlankException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.toString());
+			}
+		}
+
+	}
+
+}
+...
+Exception Occured : Blank
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+2).package bhavana;
+
+class AgeException extends Exception{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String str;
+	AgeException(String str){
+		this.str = str;
+	}
+	public String toString() {
+		return "Exception : "+this.str;
+	}
+}
+
+
+
+public class CheckAge {
+
+	public static void main(String[] args) {
+		Person person1 = new Person("Abhi",17);
+		try {
+		if(person1.age<18) {
+			throw new AgeException("Age should be greater than 18");
+		}
+		}
+		catch(AgeException e) {
+			System.out.println(e.toString());
+		}
+	}
+	
+}
+...
+Exception : Age should be greater than 18
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+3).package com.cg.esi.exception;
+
+import com.cg.esi.bean.Employee;
+
+class ExceptionSalary extends Exception{
+	String str;
+	ExceptionSalary(String str){
+		this.str = str;
+	}
+	public String toString() {
+		return "Exception : "+str;
+	}
+}
+
+public class EmployeeException {
+	public static void main(String[] args) {
+		Employee e1 = new Employee(1,"Abhi",2000,"Manager");
+		try {
+		if(e1.getSalary()<3000) {
+			throw new ExceptionSalary("Salary less than 3000");
+		}
+		}
+		catch(ExceptionSalary e) {
+			System.out.println(e.toString());
+		}
+	}
+}
+...
+Exception : Salary less than 3000
